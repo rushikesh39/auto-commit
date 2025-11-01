@@ -27,7 +27,8 @@ router.get("/", async (req, res) => {
     await git.addConfig("user.email", process.env.GIT_EMAIL);
 
     // ✅ Step 4: Add or reset remote origin
-    const repoUrl = `https://${process.env.GITHUB_TOKEN}@github.com/${process.env.GITHUB_USERNAME}/${process.env.GITHUB_REPO}.git`;
+    const repoUrl = `https://${process.env.GITHUB_USERNAME}:${process.env.GITHUB_TOKEN}@github.com/${process.env.GITHUB_USERNAME}/${process.env.GITHUB_REPO}.git`;
+
     const remotes = await git.getRemotes();
 
     if (!remotes.find(r => r.name === "origin")) {
